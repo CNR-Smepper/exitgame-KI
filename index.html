@@ -180,7 +180,7 @@ path.arc, circle.dot {
 
   <div id="inputSection">
     <input type="password" id="passwordInput" autocomplete="off" aria-label="Passwort Eingabe" />
-    <button id="submitBtn" aria-label="Passwort prÃ¼fen">ENTER</button>
+    <button id="submitBtn" aria-label="Passwort prüfen">ENTER</button>
   </div>
 
   <div id="message" aria-live="polite"></div>
@@ -188,7 +188,7 @@ path.arc, circle.dot {
   <!-- Neues WLAN-Symbol -->
   <div id="wifi-container" aria-label="WLAN Signal">
     <svg id="wifi" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;">
-      <!-- Ã¤uÃerster Bogen -->
+      <!-- äußerster Bogen -->
       <path id="arc3" class="arc" d="M8 24a24 24 0 0 1 48 0" />
       <!-- mittlerer Bogen -->
       <path id="arc2" class="arc" d="M16 32a16 16 0 0 1 32 0" />
@@ -204,7 +204,7 @@ path.arc, circle.dot {
 
 <div id="timer" aria-live="polite">ZEIT: 10:00</div>
 <div id="omegaText" role="alert" aria-live="assertive">
-  PROTOKOLL OMEGA EINGESCHALTET â KI WIRD VOM NETZ GENOMMEN
+  PROTOKOLL OMEGA EINGESCHALTET – KI WIRD VOM NETZ GENOMMEN
 </div>
 <div id="successMsg" role="alert" aria-live="assertive">
   SYSTEM ERFOLGREICH HERUNTERGEFAHREN
@@ -221,7 +221,7 @@ async function sha256(msg){
   return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-// PasswÃ¶rter in Hash + reversed
+// Passwörter in Hash + reversed
 const passwordsPlain = ["Obs1d1an","Cryptex-Alpha","OmegaShutdown"];
 let reversedHashes = [];
 (async()=>{for(let pw of passwordsPlain){let h=await sha256(pw);reversedHashes.push(h.split('').reverse().join(''));}})();
@@ -294,13 +294,13 @@ if(posY<canvas.height+fontSize){requestAnimationFrame(animate);}else{callback();
 animate();
 }
 
-// PasswortprÃ¼fung
+// Passwortprüfung
 async function checkPassword(){
   if(currentLevel>=passwordsPlain.length)return;
   let val=inputEl.value.trim(); if(val.length===0)return;
   let inputHash=await sha256(val); let inputReversed=inputHash.split('').reverse().join('');
   if(inputReversed===reversedHashes[currentLevel]){
-    currentLevel++; setMessage("SIGNAL GESCHWÄCHT   -  BARRIEREN ÜBERWUNDEN");
+    currentLevel++; setMessage("SIGNAL GESCHWÄCHT – BARRIEREN ÜBERWUNDEN");
     inputEl.value=""; startTimer(); document.body.style.color="#55ffaa"; setTimeout(()=>document.body.style.color="#a0f0e0",800);
     if(currentLevel===1)arc3.classList.add("hidden");
     if(currentLevel===2)arc2.classList.add("hidden");
